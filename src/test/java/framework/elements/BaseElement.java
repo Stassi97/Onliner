@@ -119,7 +119,7 @@ public abstract class BaseElement {
     public void moveAndClickByAction() {
         isElementPresent();
         Actions actions = new Actions(getDriver());
-        actions.moveToElement(element).perform();
+        actions.moveToElement(element).click().perform();
         if(getDriver() instanceof JavascriptExecutor) {
             ((JavascriptExecutor) getDriver()).executeScript("arguments[0].style.border='3px solid brown'", element);
             isElementClickable();
@@ -128,7 +128,7 @@ public abstract class BaseElement {
         System.out.println(getProperty("log.click") + " : " + getElementType() + " : " + by);
     }
 
-    public void clickByAction() {
+    public void clickByAction() { //moveToElement
         isElementPresent();
         Actions actions = new Actions(getDriver());
         actions.moveToElement(element).perform();
