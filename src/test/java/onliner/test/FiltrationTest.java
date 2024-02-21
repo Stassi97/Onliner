@@ -14,7 +14,7 @@ public class FiltrationTest extends BaseTest {
 
         NavigationPage.mainMenuNavigation("Каталог");
         NavigationPage.electronicsNavigateTo("Электроника");
-        NavigationPage.tvAndVideoNavigate("Телевизоры и видео"); // видео
+        NavigationPage.navigateToSabMenu("Телевизоры и видео"); // видео
         NavigationPage.tvNavigate("Телевизоры");
 
         FiltersPage filtersPage = new FiltersPage();

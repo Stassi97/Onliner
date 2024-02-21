@@ -14,7 +14,7 @@ public class NavigationPage extends BaseOnlinerPage{
     private static final String TV = "//a[@href='https://catalog.onliner.by/tv']";
 
     public NavigationPage() {
-        super(By.xpath(PAGE_LOCATOR), "'Navigation' Page");
+        super(By.xpath(String.format(PAGE_LOCATOR)), "'Navigation' Page");
     }
 
     @Step("Chose Catalog")
@@ -30,14 +30,14 @@ public class NavigationPage extends BaseOnlinerPage{
     }
 
     @Step("Chose TV and video")
-    public static void tvAndVideoNavigate(String item) {
+    public static void navigateToSabMenu(String item) {
         TextBox tvAndVideo = new TextBox(By.xpath(String.format(TV_AND_VIDEO, item)));
-        tvAndVideo.click();
+        tvAndVideo.moveAndClickByAction();
     }
 
     @Step("Chose TV")
     public static void tvNavigate(String item) {
         Label tv = new Label(By.xpath(String.format(TV, item)));
-        tv.clickAndWait();
+        tv.moveAndClickByAction();
     }
 }
