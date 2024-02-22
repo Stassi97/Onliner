@@ -62,7 +62,7 @@ public class SingleProductPage extends BasePage { //выбрали один то
     }
 
     public void diagonalItemValidation() {
-        getdiagonalItem();
+        diagonalItem = Integer.parseInt(DIAGONAL_ITEM.getText());
         if (diagonalItem > 40 & diagonalItem < 50) {
             System.out.println("Diagonal is correct");
         }

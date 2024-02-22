@@ -17,23 +17,17 @@ public class FiltrationTest extends BaseTest {
         NavigationPage.navigateToSabMenu("Телевизоры и видео"); // видео
         NavigationPage.tvNavigate("Телевизоры");
 
-        FiltersPage filtersPage = new FiltersPage();
-        filtersPage.setManufacture();
+        TVPage filtersPage = new TVPage();
+        filtersPage.selectManufacture();
         filtersPage.setPrice();
         filtersPage.setDiagonal();
         filtersPage.setDiagonal1();
-        filtersPage.setScreenResolution();
+        filtersPage.selectScreenResolution();
 
-//        ComparePage comparePage = new ComparePage(); //если все, что ниже закомментить, то нормально будет работать
-//        comparePage.getDiagonal();
-//        comparePage.getProductPrice();
-//        comparePage.getResolution();
-//        comparePage.productSelection();
-//
-//        SingleProductPage singleProductPage = new SingleProductPage();
-//        singleProductPage.itemValidation();
-//        singleProductPage.diagonalItemValidation();
-//        singleProductPage.itemResolutionValidation();
-//        singleProductPage.priceItemValidation();
+        Compare compare = new Compare();
+        compare.compareProductItem();
+        compare.compareDiagonalItem();
+        compare.compareResolutionItem();
+
     }
 }

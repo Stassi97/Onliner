@@ -7,6 +7,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -62,6 +63,12 @@ public abstract class BaseElement {
         isElementPresent();
         System.out.println((getProperty("log.select") + element.getText()));
         return element.isSelected();
+    }
+
+    public boolean select(String value) {
+        Select select = new Select(element);
+        select.deselectAll();
+        return true;
     }
 
     public boolean isDisplayed() {

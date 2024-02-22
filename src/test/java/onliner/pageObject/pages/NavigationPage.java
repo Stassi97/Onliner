@@ -38,6 +38,6 @@ public class NavigationPage extends BaseOnlinerPage{
     @Step("Chose TV")
     public static void tvNavigate(String item) {
         Label tv = new Label(By.xpath(String.format(TV, item)));
-        tv.moveAndClickByAction();
+        tv.click();
     }
 }

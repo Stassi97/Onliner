@@ -12,7 +12,7 @@ import static framework.Browser.getDriver;
 
 public class ComparePage extends BasePage {
     private static final String PAGE_LOCATOR = "//div[@class='catalog-form__offers-list' and text()='Products']";
-    private static final List<String> PRODUCTS_LIST = getDriver().findElements(By.xpath("//div[@class='catalog-form__description catalog-form__description_primary catalog-form__description_base-additional catalog-form__description_font-weight_semibold catalog-form__description_condensed-other']"))
+    private static final List<String> PRODUCTS_LIST = getDriver().findElements(By.xpath("//div[@class='catalog-form__filter-part catalog-form__filter-part_2']"))
             .stream().map(e-> e.getText()).collect(Collectors.toList());
 
     private static final String ITEM = "//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']";
