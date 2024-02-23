@@ -28,6 +28,8 @@ public class FiltrationTest extends BaseTest {
         compare.compareProductItem();
         compare.compareDiagonalItem();
         compare.compareResolutionItem();
-
+        compare.comparePriceItem();
+        compare.comparePriceItemSale1();
+        compare.comparePriceItemSale2();
     }
 }
