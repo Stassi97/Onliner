@@ -34,11 +34,21 @@ public abstract class BaseElement {
         return element;
     }
 
+    public String getText() {
+        isElementPresent();
+        return element.getText();
+    }
+
+    public String getAttribute(String attribute) {
+        isElementPresent();
+        return element.getAttribute(attribute); //в лог вынести значение атрибута
+    }
+
     protected abstract String getElementType();
     public boolean isElementPresent() {
         try {
             getDriver().manage().timeouts().implicitlyWait(new PropertyReader("config.properties").
-            getIntProperty("timeout"), TimeUnit.SECONDS);
+                    getIntProperty("timeout"), TimeUnit.SECONDS);
             element = getDriver().findElement(by);
             return element.isDisplayed();
         } catch (Exception e) {
@@ -48,27 +58,10 @@ public abstract class BaseElement {
         return false;
     }
 
-    public void sendKeys(String sendKeys) {
-        isElementPresent();
-        getElement().sendKeys(sendKeys);
-    }
-
-    public String getText() {
-        isElementPresent();
-        return element.getText();
-
-    }
-
     public boolean isSelected() {
         isElementPresent();
         System.out.println((getProperty("log.select") + element.getText()));
         return element.isSelected();
-    }
-
-    public boolean select(String value) {
-        Select select = new Select(element);
-        select.deselectAll();
-        return true;
     }
 
     public boolean isDisplayed() {
@@ -94,6 +87,18 @@ public abstract class BaseElement {
             return false;
         }
     }
+
+    public void sendKeys(String sendKeys) {
+        isElementPresent();
+        getElement().sendKeys(sendKeys);
+    }
+
+    public boolean select(String value) {
+        Select select = new Select(element);
+        select.deselectAll();
+        return true;
+    }
+
     public void click() {
         isElementPresent();
         if (getDriver() instanceof JavascriptExecutor) {
@@ -162,10 +167,5 @@ public abstract class BaseElement {
         Actions actions = new Actions(getDriver());
         actions.moveToElement(element).perform();
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    public String getAttribute(String attribute) {
-        isElementPresent();
-        return element.getAttribute(attribute); //в лог вынести значение атрибута
     }
 }
