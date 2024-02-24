@@ -9,6 +9,7 @@ public class FiltrationTest extends BaseTest {
 
     @Test
     @Description("Onliner description")
+
     public void checkFiltration() {
         HomePage homePage = new HomePage();
 
@@ -24,7 +25,7 @@ public class FiltrationTest extends BaseTest {
         filtersPage.setDiagonal1();
         filtersPage.selectScreenResolution();
 
-        Compare compare = new Compare();
+        ComparePage compare = new ComparePage();
         compare.compareProductItem();
         compare.compareDiagonalItem();
         compare.compareResolutionItem();
