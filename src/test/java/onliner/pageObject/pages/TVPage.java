@@ -12,10 +12,11 @@ public class TVPage extends BaseOnlinerPage {
     private static final String PRICE = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[10]/div/div/div[2]/div[2]/div/div[2]/input";
     private static final String DIAGONAL = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[15]/div/div[2]/div[2]/div[2]/div/div[1]/div/select";
     private static final String DIAGONAL1 = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[15]/div/div[2]/div[2]/div[2]/div/div[2]/div/select";
+
     private static final String SCREEN_RESOLUTION = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[16]/div/div[2]/div[2]/div/ul/li[3]/label";
 
     public TVPage() {
-        super(By.xpath(PAGE_LOCATOR), "'Filter' Page");
+        super(By.xpath(PAGE_LOCATOR), "'Filter TV' Page");
     }
 
     @Step("Chose manufacture")
