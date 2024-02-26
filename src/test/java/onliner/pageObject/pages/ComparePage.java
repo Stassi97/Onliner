@@ -1,6 +1,7 @@
 package onliner.pageObject.pages;
 
 import framework.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -30,6 +31,7 @@ public class ComparePage extends BasePage {
         super(By.xpath(PAGE_LOCATOR),"'Product' Page");
     }
 
+    @Step("Check manufacture")
     public void compareProductItem() {
         nameItem = ITEM_NAME.getText();
         filterName = FILTER_ITEM_NAME.getText();
@@ -41,6 +43,7 @@ public class ComparePage extends BasePage {
         }
     }
 
+    @Step("Check diagonal")
     public void compareDiagonalItem() {
         diagonalItem = ITEM_DIAGONAL_RESOLUTION.getText();
         if (diagonalItem.contains("43\"")) {
@@ -51,13 +54,14 @@ public class ComparePage extends BasePage {
         }
     }
 
+    @Step("Check screen resolution")
     public void compareResolutionItem() {
         resolutionItem = ITEM_DIAGONAL_RESOLUTION.getText();
         if (resolutionItem.contains(FILTER_ITEM_RESOLUTION)) {
-            System.out.println("Resolution is correct");
+            System.out.println("Screen resolution is correct");
         }
         else {
-            System.out.println("Resolution is not correct");
+            System.out.println("Screen resolution is not correct");
         }
     }
 
@@ -85,6 +89,7 @@ public class ComparePage extends BasePage {
         return priceItemSale2 = Double.parseDouble(partPriceText); //преобразовали string в double
     }
 
+    @Step("Check price (without sale)")
     public void comparePriceItem() {
         if(priceItem<priceFilter) {
             System.out.println("Price is correct");
@@ -94,6 +99,7 @@ public class ComparePage extends BasePage {
         }
     }
 
+    @Step("Check price (with sale - first TV)")
     public void comparePriceItemSale1() {
         if(priceItemSale1<priceFilter) {
             System.out.println("Price sale 1 is correct");
@@ -103,6 +109,7 @@ public class ComparePage extends BasePage {
         }
     }
 
+    @Step("Check price (with sale - second TV)")
     public void comparePriceItemSale2() {
         if(priceItemSale2<priceFilter) {
             System.out.println("Price sale 2 is correct");
