@@ -1,6 +1,7 @@
 package onliner.pageObject.pages;
 
 import framework.BasePage;
+import framework.elements.CheckBox;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ import static framework.Browser.getDriver;
 public class ComparePage extends BasePage {
 
     private static final String PAGE_LOCATOR = "//div[@class='catalog-form__filter-part catalog-form__filter-part_2']";
-    private static final WebElement ITEM_NAME = getDriver().findElement(By.xpath("//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']"));
+    private static final CheckBox ITEM_NAME = new CheckBox(By.xpath("//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']"));
     private static final WebElement FILTER_ITEM_NAME = getDriver().findElement(By.xpath("//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[3]/div[1]/div/div[1]/div/div/div[1]/div"));
     String nameItem;
     String filterName;
@@ -28,7 +29,7 @@ public class ComparePage extends BasePage {
     String resolutionItem;
 
     public ComparePage() {
-        super(By.xpath(PAGE_LOCATOR),"'Product' Page");
+        super(By.xpath(PAGE_LOCATOR),"'Check Product filtration' Page");
     }
 
     @Step("Check manufacture")
