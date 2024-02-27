@@ -8,12 +8,12 @@ import org.openqa.selenium.By;
 public class TVPage extends BaseOnlinerPage {
 
     private static final String PAGE_LOCATOR = "//div[@class='catalog-form__filter-part catalog-form__filter-part_1 js-container']";
-    private static final String MANUFACTURE = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[9]/div/div/div[2]/div[1]/ul/li[2]/label/div/div[1]";
-    private static final String PRICE = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[10]/div/div/div[2]/div[2]/div/div[2]/input";
-    private static final String DIAGONAL = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[15]/div/div[2]/div[2]/div[2]/div/div[1]/div/select";
-    private static final String DIAGONAL1 = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[15]/div/div[2]/div[2]/div[2]/div/div[2]/div/select";
+    private static final String MANUFACTURE = "//div[@class='catalog-form__checkbox-sign' and text()='Samsung']";
+    private static final String PRICE = "//input[@placeholder='до' and @class='input-style input-style_primary input-style_small catalog-form__input catalog-form__input_width_full']";
+    private static final String DIAGONAL = "(//select[@class='input-style__real'])[1]";
+    private static final String DIAGONAL1 = "(//select[@class='input-style__real'])[2]";
 
-    private static final String SCREEN_RESOLUTION = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[2]/div[2]/div[16]/div/div[2]/div[2]/div/ul/li[3]/label";
+    private static final String SCREEN_RESOLUTION = "//div[@class = 'catalog-form__checkbox-sign' and contains(text(),\"1920x1080\")]";
 
     public TVPage() {
         super(By.xpath(PAGE_LOCATOR), "'Filter TV' Page");
@@ -49,6 +49,7 @@ public class TVPage extends BaseOnlinerPage {
     @Step("Chose screen resolution")
     public void selectScreenResolution() {
         CheckBox screen = new CheckBox((By.xpath(String.format(SCREEN_RESOLUTION))));
-        screen.click();
+        screen.scrollIntoView();
+        screen.clickJS();
     }
 }
