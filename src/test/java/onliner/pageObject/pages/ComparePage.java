@@ -11,21 +11,16 @@ import static framework.Browser.getDriver;
 public class ComparePage extends BasePage {
 
     private static final String PAGE_LOCATOR = "//div[@class='catalog-form__filter-part catalog-form__filter-part_2']";
-    private static final CheckBox ITEM_NAME = new CheckBox(By.xpath("//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']"));
-    private static final WebElement FILTER_ITEM_NAME = getDriver().findElement(By.xpath("//div[@class='button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag' and text()='Samsung']"));
-    String nameItem;
-    String filterName;
+    private static final String ITEM_NAME = "//a[@class='catalog-form__link catalog-form__link_primary-additional catalog-form__link_base-additional catalog-form__link_font-weight_semibold catalog-form__link_nodecor']";
+    private static final String FILTER_ITEM_NAME = "//div[@class='button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag' and text()='Samsung']";
     private static final String ITEM_PRICE = "//a[@class='catalog-form__link catalog-form__link_nodecor catalog-form__link_primary-additional catalog-form__link_huge-additional catalog-form__link_font-weight_bold']";
-    private static final String ITEM_PRICE_SALE_1 = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[3]/div[2]/div/div[1]/div/div/div[2]/div[2]/a/span[2]";
-    private static final String ITEM_PRICE_SALE_2 = "/*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[3]/div[2]/div/div[2]/div/div/div[2]/div[2]/a/span[2]";
-    double priceItem;
-    double priceItemSale1;
-    double priceItemSale2;
-    int filterPrice = 2000;
-    double priceFilter = (double)filterPrice;
-    private static final String ITEM_DIAGONAL_RESOLUTION = "//div/div[3]/div[3]/div/div/div[1]";
-    private static final WebElement DIAGONAL_RESOLUTION = getDriver().findElement(By.xpath("//div/div[3]/div[3]/div/div/div[1]"));
+    private static final String ITEM_PRICE_SALE = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[3]/div[2]/div/div[1]/div/div/div[2]/div[2]/a/span[2]";
+    private static final String ITEM_DIAGONAL_RESOLUTION = "(//div[@class=\"button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag\"])[3]";
+    private static final String ELEMENT_DIAGONAL_RESOLUTION = "(//div[@class=\"catalog-form__description catalog-form__description_primary catalog-form__description_small-additional catalog-form__description_bullet catalog-form__description_condensed\"])[1]";
+    private static final String DIAGONAL_RESOLUTION = "//div/div[3]/div[3]/div/div/div[1]";
     private static final String FILTER_ITEM_RESOLUTION = "//*[@id=\"container\"]/div/div/div/div/div[2]/div[1]/div/div/div[3]/div/div[3]/div[1]/div/div[1]/div/div/div[4]/div/text()";
+    private static final String PRICE_ITEM = "//div/div[3]/div[3]/div/div/div[2]";
+    private static final String PRICE_FILTER = "//div/div[3]/div[3]/div/div/div[3]";
     String diagonalItem;
     String resolutionItem;
 
@@ -35,89 +30,64 @@ public class ComparePage extends BasePage {
 
     @Step("Check manufacture")
     public void compareProductItem() {
-        nameItem = ITEM_NAME.getText();
-        filterName = FILTER_ITEM_NAME.getText();
-        if (nameItem.contains(filterName)) {
+        String itemName = getDriver().findElement(By.xpath(ITEM_NAME)).getText();
+        String filterName = getDriver().findElement(By.xpath(FILTER_ITEM_NAME)).getText();
+        if (itemName.contains(filterName)) {
             System.out.println("Name is correct");
-        }
-        else {
+        } else {
             System.out.println("Name is not correct");
         }
     }
 
     @Step("Check diagonal")
     public void compareDiagonalItem() {
-        diagonalItem = ITEM_DIAGONAL_RESOLUTION.getText();
-        diagonalItem.split("-")[0]
-        if (diagonalItem.contains("43\"")) {
+        String headDiagonalItem = getDriver().findElement(By.xpath(ITEM_DIAGONAL_RESOLUTION)).getText(); // предположим 40-50
+        String elementDiagonalItem = getDriver().findElement(By.xpath(ELEMENT_DIAGONAL_RESOLUTION)).getText(); // предположим 43
+        String[] range = headDiagonalItem.replace("\"", "").split("-");
+        String rangeDiagonal = elementDiagonalItem.split("\"")[0];
+
+        double minDiagonal = Double.parseDouble(range[0]);
+        double maxDiagonal = Double.parseDouble(range[1]);
+        double diagonalItem = Double.parseDouble(rangeDiagonal);
+        if (diagonalItem >= minDiagonal && diagonalItem <= maxDiagonal) {
             System.out.println("Diagonal is correct");
-        }
-        else {
+        } else {
             System.out.println("Diagonal is not correct");
         }
     }
 
     @Step("Check screen resolution")
     public void compareResolutionItem() {
-        resolutionItem = ITEM_DIAGONAL_RESOLUTION.getText();
+        resolutionItem = getDriver().findElement(By.xpath(DIAGONAL_RESOLUTION)).getText();
         if (resolutionItem.contains(FILTER_ITEM_RESOLUTION)) {
             System.out.println("Screen resolution is correct");
-        }
-        else {
+        } else {
             System.out.println("Screen resolution is not correct");
         }
     }
 
-    public double PriceItem() {
-        WebElement productPrice = getDriver().findElement(By.xpath(String.format(ITEM_PRICE)));
-        String textPrice = productPrice.getText();
-        String partPriceText = textPrice.replace("&nbsp", "");
-        System.out.println(Double.parseDouble(partPriceText));
-        return priceItem = Double.parseDouble(partPriceText); //преобразовали string в double
-    }
-
-    public double PriceItemSale1() {
-        WebElement productPrice = getDriver().findElement(By.xpath(String.format(ITEM_PRICE_SALE_1)));
-        String textPrice = productPrice.getText();
-        String partPriceText = textPrice.replace("&nbsp;", "");
-        System.out.println(Double.parseDouble(partPriceText));
-        return priceItemSale1 = Double.parseDouble(partPriceText); //преобразовали string в double
-    }
-
-    public double PriceItemSale2() {
-        WebElement productPrice = getDriver().findElement(By.xpath(String.format(ITEM_PRICE_SALE_2)));
-        String textPrice = productPrice.getText();
-        String partPriceText = textPrice.replace("&nbsp;", "");
-        System.out.println(Double.parseDouble(partPriceText));
-        return priceItemSale2 = Double.parseDouble(partPriceText); //преобразовали string в double
-    }
-
     @Step("Check price (without sale)")
     public void comparePriceItem() {
-        if(priceItem<priceFilter) {
+        String priceItemString = getDriver().findElement(By.xpath(PRICE_ITEM)).getText();
+        int priceItem = Integer.parseInt(priceItemString);
+        String priceFilterString = getDriver().findElement(By.xpath(PRICE_FILTER)).getText();
+        int priceFilter = Integer.parseInt(priceFilterString);
+        if (priceItem < priceFilter) {
             System.out.println("Price is correct");
-        }
-        else {
+        } else {
             System.out.println("Price is not correct");
         }
     }
 
     @Step("Check price (with sale - first TV)")
-    public void comparePriceItemSale1() {
-        if(priceItemSale1<priceFilter) {
+    public void comparePriceItemSale() {
+        String priceItemSaleString = getDriver().findElement(By.xpath(ITEM_PRICE_SALE)).getText();
+        int priceItemSale = Integer.parseInt(priceItemSaleString);
+        String priceFilterString = getDriver().findElement(By.xpath(PRICE_FILTER)).getText();
+        int priceFilter = Integer.parseInt(priceFilterString);
+        if (priceItemSale < priceFilter) {
             System.out.println("Price sale 1 is correct");
-        }
-        else {
-            System.out.println("Price is not correct");
-        }
-    }
-
-    @Step("Check price (with sale - second TV)")
-    public void comparePriceItemSale2() {
-        if(priceItemSale2<priceFilter) {
-            System.out.println("Price sale 2 is correct");
-        }
-        else {
+        } else {
             System.out.println("Price is not correct");
         }
     }

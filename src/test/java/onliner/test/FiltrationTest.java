@@ -3,12 +3,14 @@ package onliner.test;
 import framework.BaseTest;
 import io.qameta.allure.Description;
 import onliner.pageObject.pages.*;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class FiltrationTest extends BaseTest {
 
     @Test
     @Description("Onliner description")
+    @Parameters({"manufacturer", "resolution", "priceTo", "diagonalFrom", "diagonalTo"})
 
     public void checkFiltration() {
         HomePage homePage = new HomePage();
@@ -30,7 +32,7 @@ public class FiltrationTest extends BaseTest {
         compare.compareDiagonalItem();
         compare.compareResolutionItem();
         compare.comparePriceItem();
-        compare.comparePriceItemSale1();
-        compare.comparePriceItemSale2();
+        compare.comparePriceItemSale();
+        softAssert.assertAll();
     }
 }

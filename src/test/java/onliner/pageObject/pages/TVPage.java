@@ -1,5 +1,6 @@
 package onliner.pageObject.pages;
 
+import framework.Browser;
 import framework.elements.CheckBox;
 import framework.elements.TextBox;
 import io.qameta.allure.Step;
@@ -36,6 +37,7 @@ public class TVPage extends BaseOnlinerPage {
     public void setDiagonal() {
         TextBox diagonal = new TextBox((By.xpath(String.format(DIAGONAL))));
         diagonal.scrollIntoView();
+        Browser.waitForPageLoad();
         diagonal.sendKeys("40");
     }
 
