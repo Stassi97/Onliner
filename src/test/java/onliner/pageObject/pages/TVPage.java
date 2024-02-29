@@ -5,6 +5,7 @@ import framework.elements.CheckBox;
 import framework.elements.TextBox;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class TVPage extends BaseOnlinerPage {
 
@@ -30,35 +31,31 @@ public class TVPage extends BaseOnlinerPage {
     public void setPrice() {
         TextBox price = new TextBox((By.xpath(String.format(PRICE))));
         price.sendKeys("2000");
+        price.sendKeys(String.valueOf(Keys.ENTER));
     }
 
     @Step("Chose first diagonal")
-    public void setDiagonal() {
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-        Browser.waitForPageLoad();
+    public void setDiagonal()  {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         TextBox diagonal = new TextBox((By.xpath(String.format(DIAGONAL))));
         diagonal.scrollIntoView();
-      //  Browser.waitForPageLoad();
+        diagonal.clickJS();
         diagonal.sendKeys("40");
-
     }
 
     @Step("Chose second diagonal")
     public void setDiagonal1() {
-        Browser.waitForPageLoad();
         TextBox diagonal1 = new TextBox((By.xpath(String.format(DIAGONAL1))));
-       // diagonal1.scrollIntoView();
         diagonal1.sendKeys("50");
     }
 
     @Step("Chose screen resolution")
     public void selectScreenResolution() {
         CheckBox screen = new CheckBox((By.xpath(String.format(SCREEN_RESOLUTION))));
-       // screen.scrollIntoView();
         screen.clickJS();
     }
 }
