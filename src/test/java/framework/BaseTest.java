@@ -10,10 +10,7 @@ import static framework.Browser.*;
 
 @Listeners(TestListener.class)
 public class BaseTest {
-
-    public SoftAssert softAssert = new SoftAssert();
     public WebDriver driver;
-
 
     @BeforeMethod
     public void setUp() {

@@ -13,7 +13,6 @@ public class TVPage extends BaseOnlinerPage {
     private static final String PRICE = "//input[@placeholder='до' and @class='input-style input-style_primary input-style_small catalog-form__input catalog-form__input_width_full']";
     private static final String DIAGONAL = "(//select[@class='input-style__real'])[1]";
     private static final String DIAGONAL1 = "(//select[@class='input-style__real'])[2]";
-
     private static final String SCREEN_RESOLUTION = "//div[@class = 'catalog-form__checkbox-sign' and contains(text(),\"1920x1080\")]";
 
     public TVPage() {
@@ -35,23 +34,31 @@ public class TVPage extends BaseOnlinerPage {
 
     @Step("Chose first diagonal")
     public void setDiagonal() {
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+        Browser.waitForPageLoad();
         TextBox diagonal = new TextBox((By.xpath(String.format(DIAGONAL))));
         diagonal.scrollIntoView();
-        Browser.waitForPageLoad();
+      //  Browser.waitForPageLoad();
         diagonal.sendKeys("40");
+
     }
 
     @Step("Chose second diagonal")
     public void setDiagonal1() {
+        Browser.waitForPageLoad();
         TextBox diagonal1 = new TextBox((By.xpath(String.format(DIAGONAL1))));
-        diagonal1.scrollIntoView();
+       // diagonal1.scrollIntoView();
         diagonal1.sendKeys("50");
     }
 
     @Step("Chose screen resolution")
     public void selectScreenResolution() {
         CheckBox screen = new CheckBox((By.xpath(String.format(SCREEN_RESOLUTION))));
-        screen.scrollIntoView();
+       // screen.scrollIntoView();
         screen.clickJS();
     }
 }

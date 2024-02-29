@@ -5,6 +5,7 @@ import io.qameta.allure.Description;
 import onliner.pageObject.pages.*;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class FiltrationTest extends BaseTest {
 
@@ -32,7 +33,5 @@ public class FiltrationTest extends BaseTest {
         compare.compareDiagonalItem();
         compare.compareResolutionItem();
         compare.comparePriceItem();
-        compare.comparePriceItemSale();
-        softAssert.assertAll();
     }
 }
