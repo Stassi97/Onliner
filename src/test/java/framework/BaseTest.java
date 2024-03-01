@@ -11,7 +11,6 @@ import static framework.Browser.*;
 @Listeners(TestListener.class)
 public class BaseTest {
     public WebDriver driver;
-
     @BeforeMethod
     public void setUp() {
         Browser.getInstance();

@@ -36,31 +36,27 @@ public class TVPage extends BaseOnlinerPage {
 
     @Step("Chose first diagonal")
     public void setDiagonal()  {
-        Browser.waitForPageLoadNEW();
+        Browser.Wait();
         TextBox diagonal = new TextBox((By.xpath(String.format(DIAGONAL))));
         diagonal.scrollIntoView();
         diagonal.clickJS();
         diagonal.sendKeys("40");
-        Browser.waitForPageLoadNEW();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Browser.waitForPageContentLoad();
     }
 
     @Step("Chose second diagonal")
     public void setDiagonal1() {
         TextBox diagonal1 = new TextBox((By.xpath(String.format(DIAGONAL1))));
         diagonal1.scrollIntoView();
-        Browser.waitForPageLoadNEW();
+        diagonal1.clickJS();
         diagonal1.sendKeys("50");
-        Browser.waitForPageLoad();
+        Browser.waitForPageContentLoad();
     }
 
     @Step("Chose screen resolution")
     public void selectScreenResolution() {
         CheckBox screen = new CheckBox((By.xpath(String.format(SCREEN_RESOLUTION))));
         screen.clickJS();
+        Browser.waitForPageContentLoad();
     }
 }

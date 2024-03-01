@@ -46,6 +46,7 @@ public class Browser {
     }
 
     public static void waitForPageContentLoad() {
+        Wait();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(PropertyReader.getIntProperty("page.load.timeout")));
         wait.until(driver -> {
             Long initialContentHeight = (Long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
@@ -68,20 +69,13 @@ public class Browser {
         });
     }
 
-    public static void waitForPageLoadNEW() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(PropertyReader.getIntProperty("page.load.timeout")));
-        wait.until(new Function<WebDriver, Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                System.out.println("Current Window State       : "
-                        + String.valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState")));
-                return String
-                        .valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
-                        .equals("complete");
-            }
-        });
+    public static void Wait() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-
 
     public static WebDriver getDriver() {
         return driver;

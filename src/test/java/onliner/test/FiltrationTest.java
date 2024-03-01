@@ -1,8 +1,10 @@
 package onliner.test;
 
 import framework.BaseTest;
+import framework.Browser;
 import io.qameta.allure.Description;
 import onliner.pageObject.pages.*;
+import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -13,7 +15,7 @@ public class FiltrationTest extends BaseTest {
     @Description("Onliner description")
     @Parameters({"manufacturer", "resolution", "priceTo", "diagonalFrom", "diagonalTo"})
 
-    public void checkFiltration() {
+    public void checkFiltration() throws InterruptedException {
         HomePage homePage = new HomePage();
 
         NavigationPage.mainMenuNavigation("Каталог");

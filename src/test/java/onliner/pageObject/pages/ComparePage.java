@@ -4,6 +4,8 @@ import framework.BasePage;
 import framework.Browser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.Assert;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +19,7 @@ public class ComparePage extends BasePage {
     private static final String FILTER_DIAGONAL_RESOLUTION = "(//div[@class=\"button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag\"])[3]";
     private static final String ITEM_DIAGONAL_RESOLUTION = "(//div[@class=\"catalog-form__description catalog-form__description_primary catalog-form__description_small-additional catalog-form__description_bullet catalog-form__description_condensed\"])[1]";
     private static final String DIAGONAL_RESOLUTION = "(//div[@class=\"catalog-form__description catalog-form__description_primary catalog-form__description_small-additional catalog-form__description_bullet catalog-form__description_condensed\"])[1]";
-    private static final String FILTER_ITEM_RESOLUTION = "(//div[@class=\"button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag\"])[4]";
+    private static final String FILTER_ITEM_RESOLUTION = "//div[@class = 'button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag' and contains(text(),\"1920x1080\")]";
     private static final String PRICE_ITEM = "//div[@class=\"catalog-form__description catalog-form__description_huge-additional catalog-form__description_font-weight_bold catalog-form__description_condensed-other catalog-form__description_primary\"]";
     private static final String PRICE_FILTER = "(//div[@class=\"button-style button-style_either button-style_small catalog-form__button catalog-form__button_tag\"])[2]";
 
