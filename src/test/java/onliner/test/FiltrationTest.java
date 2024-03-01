@@ -30,8 +30,8 @@ public class FiltrationTest extends BaseTest {
 
         ComparePage compare = new ComparePage();
         compare.compareProductItem();
-        compare.compareDiagonalItem();
         compare.compareResolutionItem();
         compare.comparePriceItem();
+        compare.compareDiagonalItem();
     }
 }
